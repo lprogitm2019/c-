@@ -1,2 +1,4 @@
 # c-
-C++ es un lenguaje de programación multiparadigma, puesto que permite programar de manera imperativa, orientada a objetos o genérica.  Es un lenguaje nacido a principios de los años 80, pero que ha ido adquiriendo popularidad a finales de esa década y a principios de la década de los 90, puesto que ha sido el lenguaje favorito para la creación de aplicaciones de escritorio, ofimática y de juegos, tipos de aplicaciones muy populares en esa época.
+En Windows, en mi opinión, no hay nada mejor que Visual Studio. Pero hay un pequeño detalle: El compilador de Visual Studio es un compilador C++, que, aunque puede compilar un 99% de código C válido, no es un compilador C propiamente dicho.
+
+8386771593358692492162279059632640267236 
