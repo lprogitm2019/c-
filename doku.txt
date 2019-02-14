@@ -1,0 +1,11 @@
+se crea una cuenta en github
+se crea un nuevo repositorio
+se crea un archivo readme
+se agrera-edita la descripcion
+se crea una nueva rama
+se edita esta nueva rama
+se compila el programa secuencia en dos diferentes compiladores
+el resultado(un numero) es agregado a la nueva rama
+se agrega la rama a la rama master
+se crea un archivo txt con la descripción de lo realizado
+se envia por correo el repositorio al docente
