@@ -2,7 +2,10 @@
 *  CURSO: LENGUAJES DE PROGRAMACIÓN - LPW72 GRUPO 1      *
 *  DOCENTE: JUAN CAMILO CORREA CHICA                     *
 *  INSTITUTO TECNOLÓGICO METROPOLITANO                   *
-*  FECHA MÁXIMA DE ENTREGA: MAYO 4/2019 - 11:59AM        */
+*  FECHA MÁXIMA DE ENTREGA: MAYO 4/2019 - 11:59AM        *
+*  ESTUDIANTE: MANUEL DAVID DIAZ                         */
+
+
 
 /* Ejercicio: 
 Desarrolle una aplicacion de cifrado sencillo para una trama de datos de tipo entero.
@@ -44,3 +47,125 @@ Trama cifrada que se obtiene:
 	Ronda 2: {-64,-153,-27,-18,91,171}
 	Ronda 3: {324,-91,-135,64,-189,27}  Esta es la trama final cifrada
 */
+
+#include <stdlib.h>
+#include <time.h>
+#include<iostream>
+using namespace std;
+
+int* cipherData (int arreglo[], int Rondas, int tam)
+
+{
+ static int resultado[20];
+ int trama[tam];
+
+
+int tramaaux[tam];
+int g=0;
+int posini, aux1, aux2, posfin;
+
+ 
+ {
+     for(int t=0; t<tam; t++) 
+      trama[t]= arreglo[t];
+    {  
+      for(int y=0; y<Rondas; y++) 
+        
+        {
+         if (g!=0)
+
+            for(int t=0; t<tam; t++) 
+               { trama[t]=tramaaux[t]; }
+                    
+     
+     for (int a=0; a<tam; a++) 
+     
+     if (a==0)
+ 
+ {
+     posini= trama[tam-1]- trama[1]; 
+     tramaaux[a]= posini;
+ }
+ 
+ else if(a>0 && a<tam-1) 
+  {
+      if(a%2==0)
+      {
+     aux1= trama[a-1]- trama[a+1];
+     tramaaux[a]=aux1;
+              }
+      else
+      {
+         aux2= trama[a-1]+ trama[a+1];
+         tramaaux[a]=aux2;
+            
+         }
+          }
+ 
+    else if(a==tam-1)
+    
+    {
+    posfin= trama[a-1] -trama[0];
+    tramaaux[a]=posfin;
+    
+    }
+     g++;
+     
+     
+     for(int x=0; x<tam; x++)
+     {
+     
+        trama[x]=tramaaux[x];
+        resultado[x]=trama[x];
+      
+    } 
+    }
+    } 
+     
+ }
+     return resultado;
+    }
+
+
+int main ()
+   
+{
+    int tam;
+    cout<<"Ingrese el tamaño de la trama: "<< endl;
+    std::cin >> tam;
+  
+    int trama2[tam];
+ 
+    srand(time(NULL));
+    
+    for(int c = 0; c < tam; c++)
+    {
+       trama2[c] = 1 + rand() % (499 - 0); 
+       
+        }
+    cout<<"La trama inicial es: "<< endl;  
+    for (int i=0; i<tam; i++)
+    cout << trama2[i] << ' ';
+    cout<<endl;
+      
+ 
+  
+  int r;// NUMERO DE RONDAS
+  cout<<"Ingrese el numero de rondas:"<<endl;
+  std::cin >> r;
+  
+  int *x;
+  
+   x = cipherData (trama2, r, tam);
+  
+  cout<<"la trama final es: "<<endl;
+   for(int i=0; i<tam; i++)
+  {
+   cout<< *(x+i) <<' ';
+     }
+
+    return 0;
+}
+
+
+
