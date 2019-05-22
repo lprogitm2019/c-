@@ -1,0 +1,496 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+Estudiante:MAnuel Diaz, ITM
+*******************************************************************************/
+#include <iostream>
+#include <math.h> 
+#define PI 3.14159265
+#define G 9.80665
+using namespace std;
+
+
+
+     void PosProyectil(float Posiniy, float Velini,float tiempo, float angulo, float posxy, float Var)
+     {
+     float resultado;
+     {
+        if (Var==1)
+        {
+        int aux1;
+        for(int t1=0; t1<=tiempo; t1++)
+        {
+        aux1=t1;    
+        resultado= Velini*cos (angulo*PI/180)*t1;
+        std::cout <<"En "<<aux1 <<" segundos la posicion en el eje x es igual a: "<<resultado<< " metros"<< std::endl;
+        }
+        }
+        else if(Var==2)
+        {
+        
+        int aux2;
+        for(int t2=0; t2<=tiempo; t2++)
+        {
+        aux2=t2;
+        resultado=Posiniy+Velini*(sin (angulo*PI/180)*t2)-(0.5*G*(t2*t2));
+          std::cout <<"En "<<aux2 <<" segundos la posicion en el eje y es igual a: "<<resultado<< " metros"<< std::endl;
+        }
+        }
+        else if(Var==3)
+        {
+       
+        resultado=Velini*cos (angulo*PI/180); 
+        
+        std::cout <<"la velocidad en eje x es igual a: "<<resultado <<" m/s"<< std::endl;
+        
+        }
+        else if(Var==4)
+        {
+        resultado=(Velini*(sin (angulo*PI/180)))-(G*tiempo);
+        
+        std::cout <<"la velocidad en eje y es igual a: "<<resultado <<" m/s"<< std::endl;
+
+        }
+     }
+
+         
+     }
+     
+     float colelast(float m1, float m2, float vo1, float vo2, float var)
+     {
+     float resultado;
+     {
+        if (var==1)
+     {
+        resultado=((m1-m2)/(m1+m2))*vo1;
+     }
+     else if (var==2)
+     {
+        resultado=((2*m1)/(m1+m2))*vo1;
+     }
+     else if (var==3)
+     {
+        resultado=(((m1-m2)/(m1+m2))*vo1)+(((2*m2)/(m1+m2))*vo2);
+     }
+      else if (var==4)
+     {
+        resultado=(((2*m1)/(m1+m2))*vo1)-(((m1-m2)/(m1+m2))*vo2);
+     }
+         
+        
+     }
+     return resultado;
+     
+     }
+     
+     float Rebotes (float altura, float coef)
+     {
+     float resultado;
+     float u, velocidad, aux, aux1;
+     int contador = 1;
+
+     {
+     aux=altura;
+     while(aux>0.0)
+     {
+    
+    aux = (pow (coef, (2 * contador)) * altura);
+    contador++;
+    std::cout << "Rebote #: " <<contador-1<< std::endl;
+    std::cout << "Altura: "<<aux <<" metros"<<std::endl;
+        
+    }
+    
+    }
+    resultado = contador;
+    
+    return resultado;
+
+}
+
+     void mpfriccion(float xini, float yini, float tiempo, float angulo, float velini, float masa, float radio, float kfric, float var)
+{
+   float Auxf1, Auxf2, Auxf3, Auxf4, Auxf5, Auxf6, Auxf7;
+   float resultado;
+   
+  if (var==1)
+   {
+      
+    Auxf1=velini*(cos (angulo*PI/180));//vx
+    //std::cout << "la vx: "<<Auxf1 << std::endl;
+    Auxf2=(velini*(sin (angulo*PI/180)))-(G*tiempo);//vy
+    //std::cout << "la vy: " <<Auxf2<< std::endl;
+    
+    
+    Auxf3=sqrt((pow(Auxf1,2))+(pow(Auxf2,2)));//v
+    
+    //std::cout << "la v: " <<Auxf3<< std::endl;
+   
+    Auxf4=(atan(Auxf1/Auxf2))*(180/PI); //teta
+    
+
+   // std::cout <<"el angulo: " <<Auxf4 << std::endl;
+    
+
+    
+    
+    
+  Auxf5=-(((kfric*(Auxf3*Auxf3))*(radio*radio))/(masa))*(cos(Auxf4*PI/180));    //ax
+    //std::cout << "la ax: "<<Auxf5 << std::endl;
+      
+  Auxf6=  -(((kfric*(Auxf3*Auxf3))*(radio*radio))/(masa))*((sin(Auxf4*PI/180))-G);  //ay
+
+    
+    int aux1;
+        for(int t1=0; t1<=tiempo; t1++)
+        {
+    aux1=t1;
+    resultado=(xini+Auxf1*t1)+(0.5*(Auxf5)*(t1*t1));//posicion en el eje x
+
+    std::cout <<"En " <<aux1<<" segundos la posicion en el eje x es: "<<resultado <<" metros"<< std::endl;
+    
+    
+   }
+   
+      
+   }
+    else if(var==2)
+    {
+        
+    
+    Auxf7=velini*(sin (angulo*PI/180));//voy
+    //std::cout << "voy: " <<Auxf7<< std::endl;
+    
+
+    Auxf1=velini*(cos (angulo*PI/180));//vx
+    //std::cout << "la vx: "<<Auxf1 << std::endl;
+    Auxf2=(velini*(sin (angulo*PI/180)))-(G*tiempo);//vy
+    //std::cout << "la vy: " <<Auxf2<< std::endl;
+    
+    
+    Auxf3=sqrt((pow(Auxf1,2))+(pow(Auxf2,2)));//v
+    
+   // std::cout << "la v: " <<Auxf3<< std::endl;
+   
+    Auxf4=(atan(Auxf1/Auxf2))*(180/PI); //teta
+    
+
+    //std::cout <<"el angulo: " <<Auxf4 << std::endl;
+    
+
+    
+    
+    
+  Auxf5=-(((kfric*(Auxf3*Auxf3))*(radio*radio))/(masa))*(cos(Auxf4*PI/180));    //ax
+   // std::cout << "la ax: "<<Auxf5 << std::endl;
+      
+  Auxf6=-(((kfric*(Auxf3*Auxf3))*(radio*radio))/(masa))*(sin(Auxf4*PI/180))-G;  //ay
+  //cout<<"coeficiente"<<kfric<<endl;
+    //cout<<"la ay: "<<Auxf6<<endl;
+
+
+int aux2;
+        for(int t2=0; t2<=tiempo; t2++)
+        {
+    aux2=t2;
+    
+   resultado=(yini+Auxf7*t2)+(0.5*Auxf6*(t2*t2));
+
+    std::cout <<"En "<<aux2<<" segundos la posicion en el eje y es: "<<resultado << " metros"<<std::endl;
+}
+    
+    }
+}
+   /**************************************************************************************************************/ 
+   
+   
+   
+int main()
+{
+int seleccion;    
+int seleccion1;
+int MP;
+float a, b, c, d, e, f, g, h,i;
+float vf1RCol, vf2RCol, vf1Mcol, vf2Mcol;
+
+std::cout << "Seleccione la funcion" << std::endl;
+std::cout << "1: Movimiento Parabolico." << std::endl;
+std::cout << "2: Colisiones elasticas" << std::endl;
+std::cout << "3: Rebotes" << std::endl;
+
+std::cin >> seleccion;
+if (seleccion==1)
+
+    {
+   
+    std::cout << "***Movimiento Parabolico***" << std::endl;
+    std::cout << "Selecione 1: Sin Friccion, 2: Con Friccion" << std::endl; 
+    std::cin >> MP ;
+    
+ 
+   if (MP==1)
+   {
+    std::cout << "Seleccione una de las siguientes opciones" << std::endl;
+    std::cout << "1:Posicion en X, 2:Posicion en Y, 3:Velocidad en eje x, 4:Velocidad en eje y. " << std::endl;
+    std::cin >> seleccion1;
+   
+   if(seleccion1==1){
+       d=1;
+       
+       std::cout << "ingrese el tiempo" << std::endl;
+       std::cin >> a;
+       std::cout << "ingrese el angulo" << std::endl;
+       std::cin >> b;
+       std::cout << "ingrese la velocidad inicial" << std::endl;
+       std::cin >> c;
+       
+         PosProyectil(0, c , a, b,c,d);
+
+       
+      
+       
+   }
+   else if(seleccion1==2)
+   
+   {
+      e=2;
+      
+       std::cout << "ingrese la posicion inicial de y" << std::endl;
+       std::cin >> a;
+       std::cout << "ingrese el tiempo" << std::endl;
+       std::cin >> b;
+       std::cout << "ingrese el angulo" << std::endl;
+       std::cin >> c;
+       std::cout << "ingrese la velocidad inicial" << std::endl;
+       std::cin >> d;
+      
+
+              PosProyectil(a, d, b, c, 0, e);
+
+      
+   }
+    else if(seleccion1==3)
+   
+   {
+       e=3;
+      
+       std::cout << "ingrese el angulo" << std::endl;
+       std::cin >> c;
+       std::cout << "ingrese la velocidad inicial" << std::endl;
+       std::cin >> d;
+      
+
+       PosProyectil(0, d, 0, c, 0, e);
+      
+   }
+   
+   else if(seleccion1==4)
+   
+   {
+       e=4;
+      
+       std::cout << "ingrese el tiempo" << std::endl;
+       std::cin >> b;
+       std::cout << "ingrese el angulo" << std::endl;
+       std::cin >> c;
+       std::cout << "ingrese la velocidad inicial" << std::endl;
+       std::cin >> d;
+      
+       
+              PosProyectil(0, d, b, c, 0, e);
+
+      
+       
+   }
+   }
+   else if(MP==2)
+   {
+       
+    
+       std::cout << "***Movimiento Parabolico con friccion***" << std::endl;
+       
+       std::cout << "Seleccione 1:posicion en eje x, 2: posicion en eje y"<< std::endl;
+       std::cin >> seleccion1;
+       
+       if(seleccion1==1)
+       {
+           
+           i=1;
+            std::cout << "ingrese el tiempo" << std::endl;
+            std::cin >> a;
+            std::cout << "ingrese el angulo" << std::endl;
+            std::cin >> b;
+            std::cout << "ingrese la velocidad inicial" << std::endl;
+            std::cin >> c;
+            std::cout << "ingrese la posicion inicial en x" << std::endl;
+            std::cin >> d;
+            std::cout << "ingrese la posicion inicial en y" << std::endl;
+            std::cin >> e;
+            std::cout << "ingrese la masa" << std::endl;
+            std::cin >> f;
+            std::cout << "ingrese el radio" << std::endl;
+            std::cin >> g;
+            std::cout << "ingrese el coeficinete de friccion" << std::endl;
+            std::cin >> h;
+           
+            mpfriccion(d, e, a, b, c, f, g, h, i);
+           
+           
+       }
+            
+            else if (seleccion1==2)
+            {
+                
+                i=2;
+            std::cout << "ingrese el tiempo" << std::endl;
+            std::cin >> a;
+            std::cout << "ingrese el angulo" << std::endl;
+            std::cin >> b;
+            std::cout << "ingrese la velocidad inicial" << std::endl;
+            std::cin >> c;
+            std::cout << "ingrese la posicion inicial en x" << std::endl;
+            std::cin >> d;
+            std::cout << "ingrese la posicion inicial en y" << std::endl;
+            std::cin >> e;
+            std::cout << "ingrese la masa" << std::endl;
+            std::cin >> f;
+            std::cout << "ingrese el radio" << std::endl;
+            std::cin >> g;
+            std::cout << "ingrese el coeficinete de friccion" << std::endl;
+            std::cin >> h;
+                
+                mpfriccion(d, e, a, b, c, f, g, h, i );
+            }
+            
+            
+
+   }
+   
+   
+   } 
+   
+   
+   else if (seleccion==2)
+   {
+       std::cout << "***Colisiones Elasticas***" << std::endl;
+       std::cout << "Seleccione una de las siguientes opciones" << std::endl;
+       std::cout << "1: Vf1 en Reposo , 2: Vf2 en Reposo, 3: Vf1 en Movimiento , 4: Vf2 en Movimiento " << std::endl;
+       std::cin >> seleccion1;
+       
+ if (seleccion1==1)
+{
+    
+        e=1;
+      
+     
+       std::cout << "ingrese m1" << std::endl;
+       std::cin >> a;
+       std::cout << "ingrese m2" << std::endl;
+       std::cin >> b;
+       std::cout << "ingrese Vo1" << std::endl;
+       std::cin >> c;
+     
+     vf1RCol=colelast(a, b, c, 0, e);
+     std::cout << "la Vf1 en reposo es igual a: " << vf1RCol<<" m/s"<<std::endl;
+     
+}
+if (seleccion1==2)
+{
+    
+        e=2;
+      
+      
+     
+       std::cout << "ingrese m1" << std::endl;
+       std::cin >> a;
+       std::cout << "ingrese m2" << std::endl;
+       std::cin >> b;
+       std::cout << "ingrese Vo1" << std::endl;
+       std::cin >> c;
+     
+     vf2RCol=colelast(a, b, c, 0, e);
+     std::cout << "la Vf2 en reposo es igual a: " << vf2RCol<<" m/s"<<std::endl;
+       
+       
+}
+if (seleccion1==3)
+{
+    
+        e=3;
+        
+       
+     
+       std::cout << "ingrese m1" << std::endl;
+       std::cin >> a;
+       std::cout << "ingrese m2" << std::endl;
+       std::cin >> b;
+       std::cout << "ingrese Vo1" << std::endl;
+       std::cin >> c;
+       std::cout << "ingrese Vo2" << std::endl;
+       std::cin >> d;
+     
+     vf1Mcol=colelast(a, b, c, d, e);
+     std::cout << "la Vf1 en Movimiento es igual a: " << vf1Mcol<<" m/s"<<std::endl;
+       
+      
+       
+}
+if (seleccion1==4)
+{
+    
+        e=4;
+        
+        
+         
+     
+       std::cout << "ingrese m1" << std::endl;
+       std::cin >> a;
+       std::cout << "ingrese m2" << std::endl;
+       std::cin >> b;
+       std::cout << "ingrese Vo1" << std::endl;
+       std::cin >> c;
+       std::cout << "ingrese Vo2" << std::endl;
+       std::cin >> d;
+     
+     vf2Mcol=colelast(a, b, c, d, e);
+     
+     std::cout << "la Vf1 en Movimiento es igual a: " << vf2Mcol<<" m/s"<<std::endl;
+      
+      
+}
+   }
+   
+   else if (seleccion==3)
+   {
+    
+  float funcion;
+  float Altini, coefi, coefi1;
+  
+  std::cout << "***Rebotes***" << std::endl;
+
+
+  std::cout << "Ingrese la altura Inicial" << std::endl;
+  std::cin >> Altini;
+  std::cout << "Ingrese el coeficiente de Restitucion(valores entre 0 y 1)" << std::endl;
+  std::cin >> coefi;
+  
+  
+   while (coefi>=1 || coefi<=0)
+    {
+    std::cout << "fail, ingrese nuevamente" << std::endl;
+    cin>>coefi;
+    
+    }
+    coefi1=coefi;
+
+  
+  funcion = Rebotes (Altini, coefi1);
+
+  std::cout << "El numero de rebotes es: " << funcion << std::endl;
+
+}
+
+return 0;
+}
